@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
+</head>
+<body>
+    <pre id="calendario"></pre>
+
+    <script>
+        const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho","Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        const dias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
+        const anos = ["2024", "2025", "2026", "2027", "2028", "2029","2030", "2031", "2032", "2033", "2034", "2035", "2036"];
+
+        let calendarioContent = "";
+
+        for (var ano = 0; ano < anos.length; ano++) {
+            calendarioContent += "-----------------------------\n";
+            calendarioContent += "| Calendário do ano de " + anos[ano] + "   |\n";
+            calendarioContent += "-----------------------------\n";
+            
+            for (var mes = 0; mes < meses.length; mes++) { 
+                calendarioContent += meses[mes] + "\n";
+                
+                var diassemana = "";
+                for (var dia = 0; dia < dias.length; dia++) { 
+                    diassemana  +=  dias[dia] + " ";
+                }
+                calendarioContent += diassemana + "\n";
+                
+                var numerodia = mes === 1 ? 28 : (mes === 3 || mes === 5 || mes === 8 || mes === 10 ? 30 : 31);
+                var numerodias = "";  
+                for (var i = 1; i <= numerodia; i++) { 
+                    numerodias +=  i + " ";
+                    if (i % 7 === 0) {
+                        numerodias += "\n";
+                    }
+                }
+                calendarioContent += numerodias + "\n\n";
+            }
+        }
+
+        document.getElementById('calendario').textContent = calendarioContent;
+    </script>
+</body>
+</html>
