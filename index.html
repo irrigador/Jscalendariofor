@@ -29,11 +29,22 @@
                 }
                 calendarioContent += diassemana + "\n";
                 
+                // Definir o número de dias do mês (considerando fevereiro como 28 dias para simplificação)
                 var numerodia = mes === 1 ? 28 : (mes === 3 || mes === 5 || mes === 8 || mes === 10 ? 30 : 31);
+
+                // Definir o primeiro dia da semana do mês
+                var primeiroDiaSemana = new Date(anos[ano], mes, 1).getDay();
                 var numerodias = "";  
+
+                // Preencher os dias em branco até o primeiro dia da semana
+                for (var i = 0; i < primeiroDiaSemana; i++) {
+                    numerodias += "   ";  // Espaço em branco para alinhamento
+                }
+
+                // Preencher os dias do mês
                 for (var i = 1; i <= numerodia; i++) { 
-                    numerodias +=  i + " ";
-                    if (i % 7 === 0) {
+                    numerodias += (i < 10 ? " " + i : i) + " "; // Adicionar espaço para alinhar números menores que 10
+                    if ((i + primeiroDiaSemana) % 7 === 0) {
                         numerodias += "\n";
                     }
                 }
